@@ -1,5 +1,5 @@
 {
-  "name": "pdf.js",
+  "name": "pdfjs-custom",
   "version": "2.0.0",
   "devDependencies": {
     "acorn": "^5.7.2",
@@ -49,5 +49,8 @@
     "type": "git",
     "url": "git://github.com/mozilla/pdf.js.git"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "pdfjs-dist": "file:build/dist"
+  }
 }

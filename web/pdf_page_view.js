@@ -169,6 +169,10 @@ class PDFPageView {
       if (currentZoomLayerNode === node || currentAnnotationNode === node) {
         continue;
       }
+      try {
+        if (node.classList.contains('isStore'))
+          continue;
+      } catch (E) { }
       div.removeChild(node);
     }
     div.removeAttribute('data-loaded');
