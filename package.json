@@ -1,6 +1,6 @@
 {
   "name": "pdfjs-custom",
-  "version": "2.0.1",
+  "version": "2.1.250",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-transform-modules-commonjs": "^7.2.0",
