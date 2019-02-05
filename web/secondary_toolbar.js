@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { ScrollMode, SpreadMode } from './base_viewer';
+import { SCROLLBAR_PADDING, ScrollMode, SpreadMode } from './ui_utils';
 import { CursorTool } from './pdf_cursor_tools';
 import { PDFSinglePageViewer } from './pdf_single_page_viewer';
-import { SCROLLBAR_PADDING } from './ui_utils';
 
 /**
  * @typedef {Object} SecondaryToolbarOptions
@@ -123,11 +122,11 @@ class SecondaryToolbar {
     // current `BaseViewer` instance (in particular `PDFSinglePageViewer`).
     this.eventBus.on('baseviewerinit', (evt) => {
       if (evt.source instanceof PDFSinglePageViewer) {
-        this.toolbarButtonContainer.classList.add('hiddenScrollModeButtons');
-        this.toolbarButtonContainer.classList.add('hiddenSpreadModeButtons');
+        this.toolbarButtonContainer.classList.add('hiddenScrollModeButtons',
+                                                  'hiddenSpreadModeButtons');
       } else {
-        this.toolbarButtonContainer.classList.remove('hiddenScrollModeButtons');
-        this.toolbarButtonContainer.classList.remove('hiddenSpreadModeButtons');
+        this.toolbarButtonContainer.classList.remove('hiddenScrollModeButtons',
+                                                     'hiddenSpreadModeButtons');
       }
     });
   }

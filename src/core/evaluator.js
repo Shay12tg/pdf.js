@@ -100,6 +100,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
     }
     var cs = ColorSpace.parse(dict.get('ColorSpace', 'CS'), xref, res,
                               pdfFunctionFactory);
+    // isDefaultDecode() of DeviceGray and DeviceRGB needs no `bpc` argument.
     return (cs.name === 'DeviceGray' || cs.name === 'DeviceRGB') &&
            cs.isDefaultDecode(dict.getArray('Decode', 'D'));
   };
@@ -114,8 +115,9 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
     }
     var cs = ColorSpace.parse(dict.get('ColorSpace', 'CS'), xref, res,
                               pdfFunctionFactory);
+    const bpc = dict.get('BitsPerComponent', 'BPC') || 1;
     return (cs.numComps === 1 || cs.numComps === 3) &&
-           cs.isDefaultDecode(dict.getArray('Decode', 'D'));
+           cs.isDefaultDecode(dict.getArray('Decode', 'D'), bpc);
   };
 
   function PartialEvaluator({ pdfManager, xref, handler, pageIndex, idFactory,
@@ -299,6 +301,11 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       var dict = xobj.dict;
       var matrix = dict.getArray('Matrix');
       var bbox = dict.getArray('BBox');
+      if (Array.isArray(bbox) && bbox.length === 4) {
+        bbox = Util.normalizeRect(bbox);
+      } else {
+        bbox = null;
+      }
       var group = dict.get('Group');
       if (group) {
         var groupOptions = {
@@ -1325,7 +1332,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
             fontFamily: font.fallbackName,
             ascent: font.ascent,
             descent: font.descent,
-            vertical: font.vertical,
+            vertical: !!font.vertical,
           };
         }
         textContentItem.fontName = font.loadedName;
@@ -1501,24 +1508,16 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
           return;
         }
 
-        // Do final text scaling
-        textContentItem.width *= textContentItem.textAdvanceScale;
-        textContentItem.height *= textContentItem.textAdvanceScale;
+        // Do final text scaling.
+        if (!textContentItem.vertical) {
+          textContentItem.width *= textContentItem.textAdvanceScale;
+        } else {
+          textContentItem.height *= textContentItem.textAdvanceScale;
+        }
         textContent.items.push(runBidiTransform(textContentItem));
 
         textContentItem.initialized = false;
         textContentItem.str.length = 0;
-      }
-
-      function isIdenticalSetFont(name, size) {
-        return (textState.font &&
-                name === textState.fontName && size === textState.fontSize);
-      }
-
-      function handleBeginText() {
-        flushTextContentItem();
-        textState.textMatrix = IDENTITY_MATRIX.slice();
-        textState.textLineMatrix = IDENTITY_MATRIX.slice();
       }
 
       function enqueueChunk() {
@@ -1546,7 +1545,6 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         task.ensureNotTerminated();
         timeSlotManager.reset();
         var stop, operation = {}, args = [];
-        let pendingBeginText = false;
         while (!(stop = timeSlotManager.check())) {
           // The arguments parsed by read() are not used beyond this loop, so
           // we can reuse the same array on every iteration, thus avoiding
@@ -1557,30 +1555,16 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
             break;
           }
           textState = stateManager.state;
-          var fn = operation.fn | 0;
+          var fn = operation.fn;
           args = operation.args;
           var advance, diff;
 
-          if (pendingBeginText) {
-            if (fn === OPS.setFont) {
-              const fontNameArg = args[0].name, fontSizeArg = args[1];
-              // For multiple identical Tf (setFont) commands, first check if
-              // the following command is Tm (setTextMatrix) before continuing.
-              if (isIdenticalSetFont(fontNameArg, fontSizeArg)) {
-                continue;
-              }
-            }
-            if (fn !== OPS.setTextMatrix) {
-              handleBeginText();
-            }
-            pendingBeginText = false;
-          }
-
-          switch (fn) {
+          switch (fn | 0) {
             case OPS.setFont:
               // Optimization to ignore multiple identical Tf commands.
               var fontNameArg = args[0].name, fontSizeArg = args[1];
-              if (isIdenticalSetFont(fontNameArg, fontSizeArg)) {
+              if (textState.font && fontNameArg === textState.fontName &&
+                  fontSizeArg === textState.fontSize) {
                 break;
               }
 
@@ -1668,15 +1652,9 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               textState.wordSpacing = args[0];
               break;
             case OPS.beginText:
-              // Optimization to attempt to combine separate BT/ET sequences,
-              // by checking the next operator(s) before flushing text content
-              // and resetting the text/textLine matrices (see above).
-              if (combineTextItems) {
-                pendingBeginText = true;
-                break;
-              }
-
-              handleBeginText();
+              flushTextContentItem();
+              textState.textMatrix = IDENTITY_MATRIX.slice();
+              textState.textLineMatrix = IDENTITY_MATRIX.slice();
               break;
             case OPS.showSpacedText:
               var items = args[0];
@@ -2034,18 +2012,18 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
           switch (glyphName[0]) {
             case 'G': // Gxx glyph
               if (glyphName.length === 3) {
-                code = parseInt(glyphName.substr(1), 16);
+                code = parseInt(glyphName.substring(1), 16);
               }
               break;
             case 'g': // g00xx glyph
               if (glyphName.length === 5) {
-                code = parseInt(glyphName.substr(1), 16);
+                code = parseInt(glyphName.substring(1), 16);
               }
               break;
             case 'C': // Cddd glyph
             case 'c': // cddd glyph
               if (glyphName.length >= 3) {
-                code = +glyphName.substr(1);
+                code = +glyphName.substring(1);
               }
               break;
             default:
@@ -2560,13 +2538,12 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         var fontNameStr = fontName && fontName.name;
         var baseFontStr = baseFont && baseFont.name;
         if (fontNameStr !== baseFontStr) {
-          info('The FontDescriptor\'s FontName is "' + fontNameStr +
-               '" but should be the same as the Font\'s BaseFont "' +
-               baseFontStr + '"');
+          info(`The FontDescriptor\'s FontName is "${fontNameStr}" but ` +
+               `should be the same as the Font\'s BaseFont "${baseFontStr}".`);
           // Workaround for cases where e.g. fontNameStr = 'Arial' and
           // baseFontStr = 'Arial,Bold' (needed when no font file is embedded).
           if (fontNameStr && baseFontStr &&
-              baseFontStr.indexOf(fontNameStr) === 0) {
+              baseFontStr.startsWith(fontNameStr)) {
             fontName = baseFont;
           }
         }
