@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="068115f1-1034-493e-ae06-a0b81734423e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fetch_stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/fetch_stream.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/dist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/web/firefox_print_service.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/web/firefox_print_service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/web/pdf_print_service.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/web/pdf_print_service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/firefox_print_service.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/firefox_print_service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/pdf_print_service.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/pdf_print_service.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,51 +15,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-535638808">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="js" value="10" />
-          <entry key="ts" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JavaScript" value="10" />
-          <entry key="TypeScript" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.js.language.service.starts">
-        <counts>
-          <entry key="ESLintLanguageService" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="js" value="13" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JavaScript" value="13" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/display/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4250">
+            <state relative-caret-position="4482">
               <caret line="281" column="34" selection-start-line="281" selection-start-column="34" selection-end-line="281" selection-end-column="34" />
             </state>
           </provider>
@@ -64,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/display/fetch_stream.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="26" column="18" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="18" />
+            <state relative-caret-position="347">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="e#600#683#0" expanded="true" />
               </folding>
@@ -76,7 +41,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/systemjs/dist/system-production.src.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32878">
+            <state relative-caret-position="34812">
               <caret line="1936" column="13" selection-start-line="1936" selection-start-column="13" selection-end-line="1936" selection-end-column="13" />
             </state>
           </provider>
@@ -85,7 +50,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/systemjs/dist/system.src.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27370">
+            <state relative-caret-position="28980">
               <caret line="1612" column="24" selection-start-line="1612" selection-start-column="24" selection-end-line="1612" selection-end-column="24" />
             </state>
           </provider>
@@ -100,6 +65,7 @@
       <find>createFetchOptions</find>
       <find>function fetc</find>
       <find>fetch</find>
+      <find>150;</find>
     </findStrings>
     <dirStrings>
       <dir>C:\dev\consist\pdf.js</dir>
@@ -112,36 +78,26 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/display/fetch_stream.js" />
+        <option value="$PROJECT_DIR$/web/pdf_print_service.js" />
+        <option value="$PROJECT_DIR$/web/firefox_print_service.js" />
+        <option value="$PROJECT_DIR$/build/lib/web/firefox_print_service.js" />
+        <option value="$PROJECT_DIR$/build/lib/web/pdf_print_service.js" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/examples/browserify/package.json" />
-      <path value="$PROJECT_DIR$/examples/webpack/package.json" />
-      <path value="$PROJECT_DIR$/package.json" />
-    </packageJsonPaths>
-  </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1380" />
     <option name="y" value="176" />
     <option name="width" value="1738" />
     <option name="height" value="1399" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -154,13 +110,13 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="getDocument&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -194,17 +150,18 @@
       <updated>1542035869471</updated>
       <workItem from="1542035870913" duration="936000" />
       <workItem from="1542098565560" duration="63000" />
+      <workItem from="1549799005061" duration="38000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="999000" />
+    <option name="totallyTimeSpent" value="1037000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1104" y="141" width="1390" height="1119" extended-state="0" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25338346" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22654584" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -212,6 +169,7 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Learn" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32955715" />
@@ -223,6 +181,8 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Mongo Explorer" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -237,9 +197,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/pdf.js">
@@ -286,29 +243,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/display/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4250">
+        <state relative-caret-position="4482">
           <caret line="281" column="34" selection-start-line="281" selection-start-column="34" selection-end-line="281" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/systemjs/dist/system-production.src.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32878">
+        <state relative-caret-position="34812">
           <caret line="1936" column="13" selection-start-line="1936" selection-start-column="13" selection-end-line="1936" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/systemjs/dist/system.src.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27370">
+        <state relative-caret-position="28980">
           <caret line="1612" column="24" selection-start-line="1612" selection-start-column="24" selection-end-line="1612" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/display/fetch_stream.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="18" />
+        <state relative-caret-position="347">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="e#600#683#0" expanded="true" />
           </folding>
